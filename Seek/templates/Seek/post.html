@@ -1,0 +1,36 @@
+{% extends "Seek/base.html" %}{% load static%}
+{% load crispy_forms_tags %}
+
+
+
+{% block body %}
+<div class="jumbotron jumbo-vertical-center bg-dark mb-0 radius-0">
+    <div class="container">
+        <div class="login-form">
+            {% if form.errors %}
+            <p>There's something wrong with what you entered!</p>
+            {% endif %} {% if next %}
+            <p>Hey, you can't access that page.</p>
+            {% endif %}
+            <form action="{{act}}" method="post">
+                {% csrf_token %}
+
+                <h2 class="display-4 text-center">{{ titl }}</h2>
+                {{ form | crispy}}
+
+
+                <input type="submit" class="btn btn-primary btn-block mt-2" value="Publish Job">
+            </form>
+            <p class="text-center"><a href="#" class="text-decoration-none text-light"
+                    style="font-family: 'Fredoka One';font-size: 18px;">Hope, you have a best recruitment.</a></p>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- <div class="container py-5">
+
+</div> -->
+
+{% endblock %}

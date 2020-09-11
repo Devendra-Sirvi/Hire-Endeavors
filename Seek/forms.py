@@ -67,3 +67,41 @@ class OrgProfileform(forms.Form):
             'Manager',
             'Description',
         ]
+
+
+class OrgJobPost(forms.Form):
+    Position_Name = forms.CharField(
+        max_length=50, help_text="Job for what position?")
+    Description = forms.CharField(
+        max_length=150, help_text="Describe the post of Job within 150 words")
+    Age_Criteria = forms.IntegerField(
+        min_value=18, help_text="(Should be equal or above 18 years)")
+    Minimum_required_experience = forms.IntegerField(
+        min_value=0, help_text="How much experience do you expect from job seeker?"
+    )
+    Salary = forms.IntegerField(min_value=0)
+    Number_Of_Openings = forms.IntegerField()
+    Agree = forms.BooleanField(
+        help_text="Checking in this, you confirm that you commit to hire a candidate of age 18 or above and have no obligations to our terms & conditions and privacy policy.")
+
+class UserJobPost(forms.Form):
+    Position_Name = forms.CharField(
+        max_length=50, help_text="Job for what position?")
+    Description = forms.CharField(
+        max_length=150, help_text="Describe the job you want within 150 words")
+    Expected_Salary = forms.IntegerField(
+        help_text="What salary do you expect?")
+    Age = forms.IntegerField(
+        min_value=18, help_text="What's you age? (Should be equal or above 18 years)")
+    Experience = forms.IntegerField(
+        min_value=0, help_text="How much you're experienced?"
+    )
+    Agree = forms.BooleanField(
+        help_text="Checking in this, you confirm that your age is 18 or above and have no obligations to our terms & conditions and privacy policy.")
+
+
+class confirm(forms.Form):
+    Want_to_hire = forms.BooleanField(
+        help_text="By checking in, You confirm being an organisation and legitely want to hire employees.", required=False)
+    Seeking_Jobs = forms.BooleanField(
+        help_text="By checking in, You confirm being a legit user want to actively participate in job hiring process by Hire Endeavors.", required=False)

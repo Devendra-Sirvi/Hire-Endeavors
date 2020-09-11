@@ -2,28 +2,48 @@
 
 
 
-  
+
 {% block body %}
 <div class="jumbotron jumbotron-fullheight jumbo-vertical-center text-light text-center bg-dark mb-0 radius-0">
   <div class="container">
-
-      <h1 class="display-2 text-light text-uppercase">Hire Endeavors</i></b></h1>
-      <h4 style="font-family: 'Fredoka One';font-size: 22px;">Where Recruiter meets best Employee & all goes vice-versa<h4>
-
-      <div class="mt-4">
-        <a href="/org-reg/"
-           class="btn btn-danger btn-lg m-2 btn-wide">
-          <span style="font-family: 'Fredoka One';font-size: 22px;">Let's recruit</span>
-        </a>
-        <a href="/user-reg/"
-           class="btn btn-danger btn-lg m-2 btn-wide">
-          <span style="font-family: 'Fredoka One';font-size: 22px;">Get Hired</span>
-        </a>
+    <div class="text-center col-sm-12" style="display: block;">
+      {% if messages %}
+        <ul class="messages">
+          {% for msg in messages %}
+          <p class="text-center">
+          <div class="alert alert-{{msg.level_tag}} alert-dismissible text-center" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{msg.message}}
+          </div>
+          </p>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
-      <a href="#!"
-           class="btn btn-outline-light btn-hover-text-dark btn-wide btn-lg m-2 mt-5">
-          <span style="font-family: 'Fredoka One';font-size: 22px;">Get Started</span>
-        </a>
+
+    <h1 class="display-2 text-light text-uppercase">Hire Endeavors</i></b></h1>
+    <h4 style="font-family: 'Fredoka One';font-size: 22px;">Where Recruiter meets best Employee & all goes vice-versa
+    </h4>
+    {% if user.is_authenticated %}
+    <div class="mt-4">
+      <a href="/confirmation/" class="btn btn-danger btn-lg m-2 btn-wide">
+        <span style="font-family: 'Fredoka One';font-size: 22px;">Create Post</span>
+      </a>
+    </div>
+
+    {%else%}
+    <div class="mt-4">
+      <a href="/org-reg/" class="btn btn-danger btn-lg m-2 btn-wide">
+        <span style="font-family: 'Fredoka One';font-size: 22px;">Let's recruit</span>
+      </a>
+      <a href="/user-reg/" class="btn btn-danger btn-lg m-2 btn-wide">
+        <span style="font-family: 'Fredoka One';font-size: 22px;">Get Hired</span>
+      </a>
+    </div>
+    <a href="#!" class="btn btn-outline-light btn-hover-text-dark btn-wide btn-lg m-2 mt-5">
+      <span style="font-family: 'Fredoka One';font-size: 22px;">Get Started</span>
+    </a>
+    {% endif %}
   </div>
 </div>
 
