@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import org
+from .models import org, UserProfile
 # Register your models here.
 
 class panel(admin.ModelAdmin):
@@ -7,3 +7,4 @@ class panel(admin.ModelAdmin):
 
     
 admin.site.register(org, panel)
+admin.site.register(UserProfile)

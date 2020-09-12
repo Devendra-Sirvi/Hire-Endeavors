@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-
+from .models import org, UserProfile
 
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(
@@ -68,6 +68,10 @@ class OrgProfileform(forms.Form):
             'Description',
         ]
 
+class UserProfileform(forms.Form):
+    Description = forms.CharField(
+        max_length=300, help_text="Describe yourself and your proffession")
+
 
 class OrgJobPost(forms.Form):
     Position_Name = forms.CharField(
@@ -105,3 +109,58 @@ class confirm(forms.Form):
         help_text="By checking in, You confirm being an organisation and legitely want to hire employees.", required=False)
     Seeking_Jobs = forms.BooleanField(
         help_text="By checking in, You confirm being a legit user want to actively participate in job hiring process by Hire Endeavors.", required=False)
+
+class consent(forms.Form):
+    Consent_Code = forms.CharField(help_text="Enter <strong>'org'</strong> to confirm you as an organisation or either enter <strong>'seeker'</strong> to inform us that you're a legit job seeker.")
+
+    Agree = forms.BooleanField(help_text="We treat you as per your comfortness, please agree and continue.")
+
+
+class UserUpdate(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+        ]
+
+        def __init__(self):
+            super(UserUpdate, self).__init__()
+
+class UpdateUserProfileform(forms.Form):
+    Description = forms.CharField(max_length=150)
+
+    class Meta:
+        model = UserProfile
+        fields = [
+            'Description',
+        ]
+
+        def __init__(self):
+            super(UpdateUserProfileform, self).__init__()
+
+class OrgUpdate(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+        ]
+
+        def __init__(self):
+            super(OrgUpdate, self).__init__()
+
+class OrgProfileUpdate(forms.ModelForm):
+    class Meta:
+        model = org
+        fields = [
+            'orgname',
+            'managed_by',
+            'Description',
+            
+        ]
+
+        def __init__(self):
+            super(UserUpdate, self).__init__()

@@ -1,4 +1,4 @@
-{% extends "Seek/base.html" %}{% load static%}
+{% extends "Seek/base.html" %}{% block title%} Hire Endeavors {% endblock %}{% load static%}
 
 
 
@@ -30,6 +30,12 @@
         <span style="font-family: 'Fredoka One';font-size: 22px;">Create Post</span>
       </a>
     </div>
+    <a href="#!" class="btn btn-outline-light btn-hover-text-dark btn-wide btn-lg m-2 mt-5">
+      <span style="font-family: 'Fredoka One';font-size: 22px;">Posts by Job seekers</span>
+    </a>
+    <a href="#!" class="btn btn-outline-light btn-hover-text-dark btn-wide btn-lg m-2 mt-5">
+      <span style="font-family: 'Fredoka One';font-size: 22px;">Posts by recruiters</span>
+    </a>
 
     {%else%}
     <div class="mt-4">
@@ -43,6 +49,11 @@
     <a href="#!" class="btn btn-outline-light btn-hover-text-dark btn-wide btn-lg m-2 mt-5">
       <span style="font-family: 'Fredoka One';font-size: 22px;">Get Started</span>
     </a>
+    <div>
+      {% for obj in user_obj %}
+      <p> Ma{{obj}}<p>
+      {% endfor %}
+      </div>
     {% endif %}
   </div>
 </div>

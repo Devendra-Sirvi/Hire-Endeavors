@@ -9,9 +9,9 @@ class userjobpost(models.Model):
     Expected_Salary = models.IntegerField(default=0)
     age = models.IntegerField(default=18)
     Exp = models.IntegerField(default=0)
-    created_by = models.OneToOneField(
+    created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='userpost',
-        null=True, blank=True
+        null=True, blank=True, unique=False
     )
 
     def __str__(self):
@@ -24,9 +24,9 @@ class orgjobpost(models.Model):
     age = models.IntegerField(default=18)
     Exp = models.IntegerField(default=0)
     No_of_openings = models.IntegerField(default=0)
-    created_by = models.OneToOneField(
+    created_by = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='orgpost',
-        null=True, blank=True
+        null=True, blank=True, unique=False
     )
 
     def __str__(self):

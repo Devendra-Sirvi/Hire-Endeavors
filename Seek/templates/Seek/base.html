@@ -5,9 +5,10 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Hello World - Bootstrap Theme</title>
+    <title>{% block title%}{% endblock %}</title>
     <link href='https://fonts.googleapis.com/css?family=Fredoka One' rel='stylesheet'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap4-hello-world.min.css' %}">
     
@@ -20,9 +21,9 @@
     <style> 
       .navab { 
           margin-left: auto; 
-      } 
+      }; 
+      
   </style> 
-
   <div class="bg-dark navbar-dark text-white">
     <div class="container">
       <nav class="navbar px-0 navbar-expand-lg navbar-dark">
@@ -35,7 +36,7 @@
           </div>
           <div class="navbar-nav navab ">
             {% if user.is_authenticated %}
-            <a href="#" class="p-3 text-decoration-none text-light" style="font-family: 'Fredoka One';font-size: 18px;">{{user.username}}</a>
+            <a href="/consent/" class="p-3 text-decoration-none text-light" style="font-family: 'Fredoka One';font-size: 18px;">{{user.username}}</a>
             <a href="/accounts/logout/" class="p-3 text-decoration-none text-light" style="font-family: 'Fredoka One';font-size: 18px;">Log-Out</a>
             <a href="#" class="p-3 text-decoration-none text-light" style="font-family: 'Fredoka One';font-size: 18px;">Contact-Us</a>
             <a href="#" class="p-3 text-decoration-none text-light" style="font-family: 'Fredoka One';font-size: 18px;">About-Us</a>

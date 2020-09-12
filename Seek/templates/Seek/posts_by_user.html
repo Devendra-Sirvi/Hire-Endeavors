@@ -1,0 +1,63 @@
+{% extends "Seek/base.html" %}{% load static%}
+{% load crispy_forms_tags %}
+
+
+
+{% block body %}
+<div class="jumbotron jumbotron-fullheight jumbo-vertical-center bg-dark mb-0 radius-0">
+    <div class="container">
+        <div class="login-form">
+            <div class="row">
+                <div class="col-sm-12 mb-3">
+                  <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search for names..">
+                </div>
+              </div>
+            {% if form.errors %}
+            <p>There's something wrong with what you entered!</p>
+            {% endif %} {% if next %}
+            <p>Hey, you can't access that page.</p>
+            {% endif %}
+            {% if messages %}
+            <ul class="messages">
+                {% for msg in messages %}
+                <p class="text-center">
+                <div class="alert alert-{{msg.level_tag}} alert-dismissible text-center" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    {{msg.message}}
+                </div>
+                </p>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            
+        </div>
+        
+        {% for single_post in post %}
+        <div class="card text-center col-sm-12 mb-3" id="myItems">
+            <div class="card-header">
+              <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#">Featured</a>
+                </li>
+                
+              </ul>
+            </div>
+            <div class="card-body" id="myItems">
+              <h5 class="float-left" style="font-family: 'Fredoka One';">Post By : {{ single_post.created_by }}</h5><br>
+              <p class="text-center" >{{single_post.Description}}</p>
+              <a href="#" class="btn btn-primary">My contact details</a>
+            </div>
+            <div class="card-footer text-muted">
+                2 days ago
+              </div>
+          </div>
+          {% endfor %}
+    </div>
+</div>
+
+
+<!-- <div class="container py-5">
+
+</div> -->
+
+{% endblock %}
