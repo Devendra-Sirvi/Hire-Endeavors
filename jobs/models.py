@@ -17,6 +17,7 @@ class userjobpost(models.Model):
     def __str__(self):
         return self.Position_Name
 
+
 class orgjobpost(models.Model):
     Position_Name = models.CharField(max_length=50, default="Job_Name")
     Description = models.TextField(max_length=200, default="Job_Desc")

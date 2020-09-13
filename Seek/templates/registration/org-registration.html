@@ -2,29 +2,29 @@
 {% load crispy_forms_tags %}
 
 
-  
+
 {% block body %}
 <div class="jumbotron jumbo-vertical-center bg-dark mb-0 radius-0">
   <div class="container">
     <div class="login-form">
-        {% if form.errors %}
-        <p>There's something wrong with what you entered!</p>
-        {% endif %} {% if next %}
-        <p>Hey, you can't access that page.</p>
-        {% endif %}
-        <form action="/org-reg/" method="post">
-            {% csrf_token %}
-    
-            <h2 class="display-4 text-center">{{ titl }}</h2>
-            {{ form | crispy}}
-            {{ profile_form | crispy}}
-    
-            <input type="submit" class="btn btn-primary btn-block mt-2" value="Register">
-        </form>
-        <p class="text-center"><a href="/accounts/login" class="text-decoration-none text-light"
-                style="font-family: 'Fredoka One';font-size: 18px;">Already have account? Login</a></p>
+      {% if form.errors %}
+      <p>There's something wrong with what you entered!</p>
+      {% endif %} {% if next %}
+      <p>Hey, you can't access that page.</p>
+      {% endif %}
+      <form action="/org-reg/" method="post">
+        {% csrf_token %}
+
+        <h2 class="display-4 text-center">{{ titl }}</h2>
+        {{ form | crispy}}
+        {{ profile_form | crispy}}
+
+        <input type="submit" class="btn btn-primary btn-block mt-2" value="Register">
+      </form>
+      <p class="text-center"><a href="/accounts/login" class="text-decoration-none text-light"
+          style="font-family: 'Fredoka One';font-size: 18px;">Already have account? Login</a></p>
     </div>
-     
+
   </div>
 </div>
 

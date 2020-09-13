@@ -11,10 +11,10 @@ class org(models.Model):
         User, on_delete=models.CASCADE, related_name='profile',
         null=True, blank=True, unique=True
     )
-    orgname = models.CharField(max_length=50, blank=False, null=False, default="hello-org")
+    orgname = models.CharField(
+        max_length=50, blank=False, null=False, default="hello-org")
     managed_by = models.CharField(max_length=50, null=True)
     Description = models.TextField(null=True)
-    
 
     def __str__(self):
         return self.orgname if self.orgname else ''
@@ -26,6 +26,7 @@ class UserProfile(models.Model):
         null=True, blank=True, unique=True
     )
     Description = models.TextField(null=True)
+
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):

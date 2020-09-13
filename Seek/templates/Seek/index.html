@@ -8,18 +8,18 @@
   <div class="container">
     <div class="text-center col-sm-12" style="display: block;">
       {% if messages %}
-        <ul class="messages">
-          {% for msg in messages %}
-          <p class="text-center">
-          <div class="alert alert-{{msg.level_tag}} alert-dismissible text-center" role="alert">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{msg.message}}
-          </div>
-          </p>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
+      <ul class="messages">
+        {% for msg in messages %}
+        <p class="text-center">
+        <div class="alert alert-{{msg.level_tag}} alert-dismissible text-center" role="alert">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          {{msg.message}}
+        </div>
+        </p>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
 
     <h1 class="display-2 text-light text-uppercase">Hire Endeavors</i></b></h1>
     <h4 style="font-family: 'Fredoka One';font-size: 22px;">Where Recruiter meets best Employee & all goes vice-versa
@@ -51,9 +51,10 @@
     </a>
     <div>
       {% for obj in user_obj %}
-      <p> Ma{{obj}}<p>
-      {% endfor %}
-      </div>
+      <p> Ma{{obj}}
+      <p>
+        {% endfor %}
+    </div>
     {% endif %}
   </div>
 </div>

@@ -20,4 +20,3 @@ urlpatterns = [
     path('byusers/', post_by_users),
     path('byorgs/', post_by_orgs)
 ]
-

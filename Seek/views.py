@@ -244,7 +244,7 @@ def OrgUpdatation(request):
         form = OrgUpdate(instance=request.user)
         des = org.objects.get(user=request.user)
         profile_form = OrgProfileUpdate(
-            initial={'Description': des.Description, 'orgname': des.orgname, 'managed_by':des.managed_by})
+            initial={'Description': des.Description, 'orgname': des.orgname, 'managed_by': des.managed_by})
         args = {}
         args['form'] = form
         args['profile_form'] = profile_form
@@ -254,10 +254,11 @@ def OrgUpdatation(request):
 
 def post_by_users(request):
     post = userjobpost.objects.all()
-    con = {'post':post}
+    con = {'post': post}
     return render(request, "Seek/posts_by_user.html", con)
+
 
 def post_by_orgs(request):
     post = orgjobpost.objects.all()
-    con = {'post':post}
+    con = {'post': post}
     return render(request, "Seek/posts_by_org.html", con)

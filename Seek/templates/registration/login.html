@@ -4,28 +4,28 @@
 {% block title %} Login {% endblock %} {% block body %}
 <div class="jumbotron jumbo-vertical-center bg-dark mb-0 radius-0">
     <div class="container">
-    <div class="login-form">
-        {% if form.errors %}
-        <p>There's something wrong with what you entered!</p>
-        {% endif %} {% if next %}
-        <p>Hey, you can't access that page.</p>
-        {% endif %}
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <h2 class="display-4 text-center">Login</h2>
-            {{form | crispy}}
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" value="login">Log in</button>
-            </div>
-            <div class="clearfix">
-                <label class="float-left form-check-label text-decoration-none "
-                style="font-family: 'Fredoka One';font-size: 18px;"><input type="checkbox"> Remember me</label>
-                <a href="#" class="float-right text-decoration-none"
-                style="font-family: 'Fredoka One';font-size: 18px; color:black;">Forgot Password?</a>
-            </div>
-        </form>
-        <p class="text-center text-light"
-        style="font-family: 'Fredoka One';font-size: 18px;"><a href="#" class="text-decoration-none text-light">Create an Account</a></p>
-    </div>
-    
-{% endblock %}
+        <div class="login-form">
+            {% if form.errors %}
+            <p>There's something wrong with what you entered!</p>
+            {% endif %} {% if next %}
+            <p>Hey, you can't access that page.</p>
+            {% endif %}
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <h2 class="display-4 text-center">Login</h2>
+                {{form | crispy}}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" value="login">Log in</button>
+                </div>
+                <div class="clearfix">
+                    <label class="float-left form-check-label text-decoration-none "
+                        style="font-family: 'Fredoka One';font-size: 18px;"><input type="checkbox"> Remember me</label>
+                    <a href="#" class="float-right text-decoration-none"
+                        style="font-family: 'Fredoka One';font-size: 18px; color:black;">Forgot Password?</a>
+                </div>
+            </form>
+            <p class="text-center text-light" style="font-family: 'Fredoka One';font-size: 18px;"><a href="#"
+                    class="text-decoration-none text-light">Create an Account</a></p>
+        </div>
+
+        {% endblock %}
