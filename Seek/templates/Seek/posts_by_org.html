@@ -6,8 +6,8 @@
 {% block body %}
 <div class="lead bg-dark">
     <div class="container">
-        <br><h4 class="display-4 text-light" style="font-family: OCR A Std, monospace;">Job Posts by our job seekers</h4>
         <div class="text-center col-sm-12" style="display: block;">
+            <br><h4 class="display-4 text-light" style="font-family: OCR A Std, monospace;">Job Posts by legit companies</h4>
             {% if messages %}
             <ul class="messages">
                 {% for msg in messages %}
@@ -21,11 +21,14 @@
             </ul>
             {% endif %}
         </div>
-        <div class="col-sm-12 mb-3 mt-4">
+
+        <div class="col-sm-12 mb-3 mt-5">
             <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()"
                 placeholder="Search by your preferences..">
         </div>
 <!-- <###################################################################################################> -->
+
+
         <div class="card text-center col-sm-12 col-md-12 mt-4 filters">
             <div class="card-header filters">
                 <ul class="nav nav-pills card-header-pills filters">
@@ -33,60 +36,74 @@
                         <a class="nav-link active" href="#">Featured</a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">For Carpenter</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">Required
+                            Poen</a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">Age 39</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">1.5+ Years of required
+                            Experience </a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">12+ Years of Experience </a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">6+ Job
+                            opeinings </a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">Expected Salary : 27000</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">Age 19+ </a>
+                    </li>
+                    <li class="nav-item filters mt-2">
+                        <a class="nav-link disabled border rounded ml-2" href="#">Saalary : 20000</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body filters"
                 style="background:url(https://i.ibb.co/KjdtVvg/undraw-interview-rmcf.png) center no-repeat,url(https://i.ibb.co/F8x7JRW/undraw-files-6b3d.png) right no-repeat;background-size: 150px,300px">
-                <h5 class="card-title filters" style="font-family: 'Fredoka One';">Post By : Sachdev Mahajan</h5>
-                <p class="card-text filters">I'm in an urgent need for job. I have passed along time in this proffession and previously had been incharge of Kanpur sawmills.</p>
-                <a href="#" class="btn btn-primary filters">Contact Me</a>
+                <h5 class="card-title filters" style="font-family: 'Fredoka One';">Post By :
+                    K.K. Thawani Schools</h5>
+                <p class="card-text filters">We want some experienced poens for our school for various specific works. Some of them will be alloted with Examination Depts. and some to do various other works. Interested candidates can apply using below button.</p>
+                <a href="#" class="btn btn-primary filters">Apply here</a>
             </div>
             <div class="card-footer text-muted">
                 2 days ago
               </div>
         </div>
-            
-        
+
+
 <!-- <###################################################################################################> -->
         {% for single_post in post %}
 
 
-        <div class="card text-center col-sm-12 col-md-12 mt-4 filters">
+        <div class="card text-center col-sm-12 col-md-12 mt-4">
             <div class="card-header filters">
                 <ul class="nav nav-pills card-header-pills filters">
                     <li class="nav-item filters">
                         <a class="nav-link active" href="#">Featured</a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">For {{single_post.Position_Name}}</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">Required
+                            {{single_post.Position_Name}}</a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">Age {{single_post.age}}</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">{{single_post.Exp}}+ Years of required
+                            Experience </a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">{{single_post.Exp}}+ Years of Experience </a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">{{single_post.No_of_openings}}+ Job
+                            opeinings </a>
                     </li>
                     <li class="nav-item filters">
-                        <a class="nav-link disabled border rounded ml-2" href="#">Expected Salary : {{single_post.Expected_Salary}}</a>
+                        <a class="nav-link disabled border rounded ml-2" href="#">Age {{single_post.age}}+ </a>
+                    </li>
+                    <li class="nav-item filters mt-2">
+                        <a class="nav-link disabled border rounded ml-2" href="#">Salary : {{single_post.Salary}}</a>
                     </li>
                 </ul>
             </div>
             <div class="card-body filters"
                 style="background:url(https://i.ibb.co/KjdtVvg/undraw-interview-rmcf.png) center no-repeat,url(https://i.ibb.co/F8x7JRW/undraw-files-6b3d.png) right no-repeat;background-size: 150px,300px">
-                <h5 class="card-title filters" style="font-family: 'Fredoka One';">Post By : {{ single_post.created_by }}</h5>
+                <h5 class="card-title filters" style="font-family: 'Fredoka One';">Post By :
+                    {{ single_post.created_by }}</h5>
                 <p class="card-text filters">{{single_post.Description}}</p>
-                <a href="#" class="btn btn-primary filters">Contact Me</a>
+                <a href="#" class="btn btn-primary filters">Apply here</a>
             </div>
             <div class="card-footer text-muted">
                 2 days ago

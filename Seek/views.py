@@ -258,4 +258,6 @@ def post_by_users(request):
     return render(request, "Seek/posts_by_user.html", con)
 
 def post_by_orgs(request):
-    pass
+    post = orgjobpost.objects.all()
+    con = {'post':post}
+    return render(request, "Seek/posts_by_org.html", con)

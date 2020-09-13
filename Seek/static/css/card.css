@@ -97,5 +97,12 @@ button {
     color: #4CAF50;
     transform: rotate(22deg);
   }
+
+  .card-1{
+    background-image: url(https://ionicframework.com/img/getting-started/ionic-native-card.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 80px;
+    }
 }
 #8bc34a
