@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import org, UserProfile
 
+
 class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(
         max_length=30, required=True, help_text='What should we call you?.')
@@ -60,6 +61,8 @@ class OrgProfileform(forms.Form):
         max_length=50, help_text="Who is managing the company at this portal?")
     Description = forms.CharField(
         max_length=300, help_text="Describe the people you want to hire.")
+    Contact_Number = forms.CharField(
+        max_length=12, help_text="Inform us your mobile number with country code.")
 
     class Meta:
         fields = [
@@ -68,9 +71,15 @@ class OrgProfileform(forms.Form):
             'Description',
         ]
 
+
 class UserProfileform(forms.Form):
     Description = forms.CharField(
         max_length=300, help_text="Describe yourself and your proffession")
+
+    Contact_Number = forms.CharField(
+        max_length=12, help_text="Inform us your mobile number with country code.")
+    Residential_Address = forms.CharField(
+        max_length=100, help_text="Tell us, what's the place of your residence.")
 
 
 class OrgJobPost(forms.Form):
@@ -85,8 +94,11 @@ class OrgJobPost(forms.Form):
     )
     Salary = forms.IntegerField(min_value=0)
     Number_Of_Openings = forms.IntegerField()
+    Job_Site_Address = forms.CharField(
+        max_length=100, help_text="Inform here about where will be the person posted for this Job. (Address of Job posting, with proper descriptive details)")
     Agree = forms.BooleanField(
         help_text="Checking in this, you confirm that you commit to hire a candidate of age 18 or above and have no obligations to our terms & conditions and privacy policy.")
+
 
 class UserJobPost(forms.Form):
     Position_Name = forms.CharField(
@@ -110,10 +122,13 @@ class confirm(forms.Form):
     Seeking_Jobs = forms.BooleanField(
         help_text="By checking in, You confirm being a legit user want to actively participate in job hiring process by Hire Endeavors.", required=False)
 
-class consent(forms.Form):
-    Consent_Code = forms.CharField(help_text="Enter <strong>'org'</strong> to confirm you as an organisation or either enter <strong>'seeker'</strong> to inform us that you're a legit job seeker.")
 
-    Agree = forms.BooleanField(help_text="We treat you as per your comfortness, please agree and continue.")
+class consent(forms.Form):
+    Consent_Code = forms.CharField(
+        help_text="Enter <strong>'org'</strong> to confirm you as an organisation or either enter <strong>'seeker'</strong> to inform us that you're a legit job seeker.")
+
+    Agree = forms.BooleanField(
+        help_text="We treat you as per your comfortness, please agree and continue.")
 
 
 class UserUpdate(forms.ModelForm):
@@ -129,8 +144,13 @@ class UserUpdate(forms.ModelForm):
         def __init__(self):
             super(UserUpdate, self).__init__()
 
+
 class UpdateUserProfileform(forms.Form):
     Description = forms.CharField(max_length=150)
+    Contact_Number = forms.CharField(
+        max_length=12, help_text="Inform us your mobile number with country code.")
+    Residential_Address = forms.CharField(
+        max_length=100, help_text="Tell us, what's the place of your residence.")
 
     class Meta:
         model = UserProfile
@@ -140,6 +160,7 @@ class UpdateUserProfileform(forms.Form):
 
         def __init__(self):
             super(UpdateUserProfileform, self).__init__()
+
 
 class OrgUpdate(forms.ModelForm):
     class Meta:
@@ -152,15 +173,13 @@ class OrgUpdate(forms.ModelForm):
         def __init__(self):
             super(OrgUpdate, self).__init__()
 
-class OrgProfileUpdate(forms.ModelForm):
-    class Meta:
-        model = org
-        fields = [
-            'orgname',
-            'managed_by',
-            'Description',
-            
-        ]
 
-        def __init__(self):
-            super(UserUpdate, self).__init__()
+class OrgProfileUpdate(forms.Form):
+    Organisation = forms.CharField(
+        max_length=50, help_text="Organisation name and Username must be same")
+    Manager = forms.CharField(
+        max_length=50, help_text="Who is managing the company at this portal?")
+    Description = forms.CharField(
+        max_length=300, help_text="Describe the people you want to hire.")
+    Contact_Number = forms.CharField(
+        max_length=12, help_text="Inform us your mobile number with country code.")

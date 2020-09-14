@@ -15,6 +15,7 @@ class org(models.Model):
         max_length=50, blank=False, null=False, default="hello-org")
     managed_by = models.CharField(max_length=50, null=True)
     Description = models.TextField(null=True)
+    Contact_Number = models.CharField(max_length=12, default="111111111111")
 
     def __str__(self):
         return self.orgname if self.orgname else ''
@@ -26,6 +27,8 @@ class UserProfile(models.Model):
         null=True, blank=True, unique=True
     )
     Description = models.TextField(null=True)
+    Residence = models.CharField(max_length=60, default="India")
+    Contact = models.CharField(max_length=12, default="111111111111")
 
 
 @receiver(post_save, sender=User)

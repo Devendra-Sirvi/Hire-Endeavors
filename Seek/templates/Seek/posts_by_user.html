@@ -21,13 +21,15 @@
                 {% endfor %}
             </ul>
             {% endif %}
-        </div>
-        <div class="col-sm-12 mb-3 mt-4">
-            <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()"
-                placeholder="Search by your preferences..">
-        </div>
+        </div><br><br>
+        <form class="display-4" method="POST" autocomplete="off">
+            {% csrf_token %}
+        <div class="active-cyan-4 mb-4">
+            <input name="dosearch" class="text-center form-control" type="text" placeholder="Search by  Job,  Salary,  Age,  Experience,  Number of openings .    .     .     ." aria-label="Search" style="opacity:0.7; height:54px;font-weight: 800;   ">
+          </div>
+        </form><br>
         <!-- <###################################################################################################> -->
-        <div class="card text-center col-sm-12 col-md-12 mt-4 filters">
+        <!-- <div class="card text-center col-sm-12 col-md-12 mt-4 filters">
             <div class="card-header filters">
                 <ul class="nav nav-pills card-header-pills filters">
                     <li class="nav-item filters">
@@ -57,13 +59,14 @@
             <div class="card-footer text-muted">
                 2 days ago
             </div>
-        </div>
+        </div> -->
 
 
         <!-- <###################################################################################################> -->
+        {% if post %}
         {% for single_post in post %}
 
-
+            {% if single_post %}
         <div class="card text-center col-sm-12 col-md-12 mt-4 filters">
             <div class="card-header filters">
                 <ul class="nav nav-pills card-header-pills filters">
@@ -97,8 +100,30 @@
                 2 days ago
             </div>
         </div>
-
+        {% else %}
+        <div>
+            <img src="{% static 'images/error.svg' %}" height="300" width="300" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="text-light card-title text-center font-italic" style="font-family: 'Fredoka One';">Sorry! No posts found!</h5>
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
+        <p class="text-center mt-4 mb-md-0"><a href="#" class="text-decoration-none text-light"
+            style="font-family: 'Fredoka One';font-size: 18px;">Hope you discover the best.</a></p>
+
+        {% else %}
+        <div>
+            <img src="{% static 'images/error.svg' %}" height="300" width="300" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="text-light card-title text-center font-italic" style="font-family: 'Fredoka One';">Sorry! No posts found!</h5>
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+        </div>
+        {% endif %}
     </div>
 </div>
 

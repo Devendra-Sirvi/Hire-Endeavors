@@ -18,5 +18,5 @@ urlpatterns = [
     path('user-update/', UserUpdatation),
     path('org-update/', OrgUpdatation),
     path('byusers/', post_by_users),
-    path('byorgs/', post_by_orgs)
+    path('byorgs/', post_by_orgs),
 ]

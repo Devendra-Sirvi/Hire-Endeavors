@@ -12,7 +12,7 @@
             {% endif %} {% if next %}
             <p>Hey, you can't access that page.</p>
             {% endif %}
-            <form action="{{act}}" method="post">
+            <form action="{{act}}" method="post" autocomplete="off">
                 {% csrf_token %}
 
                 <h2 class="display-4 text-center">{{ titl }}</h2>

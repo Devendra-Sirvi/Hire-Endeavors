@@ -7,6 +7,8 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from .models import org, UserProfile
 from jobs.models import userjobpost, orgjobpost
+from django.db.models import Q
+
 # Create your views here.
 
 
@@ -14,7 +16,7 @@ def index(request):
     data = None
     if request.user.is_authenticated:
         me = request.user.username
-        you = f"Welcome {me}, we hope that you find your best suited job! Best of Luck!"
+        you = f"Welcome {me}, we hope that you discover the best!"
         messages.info(request, you)
         u = userjobpost.objects.all()
         o = orgjobpost.objects.all()
@@ -32,6 +34,8 @@ def Userregister(request):
             form.save()
             p = UserProfile()
             desc = profile.cleaned_data['Description']
+            contact = profile.cleaned_data['Contact_Number']
+            add = profile.cleaned_data['Residential_Address']
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -39,6 +43,8 @@ def Userregister(request):
             prof.user = user
             prof.save()
             p = UserProfile.objects.get(user=user)
+            p.Contact = contact
+            p.Residence = add
             p.Description = desc
             p.save()
 
@@ -65,12 +71,14 @@ def Orgregister(request):
             name = profile_form.cleaned_data['Organisation']
             mng = profile_form.cleaned_data['Manager']
             desc = profile_form.cleaned_data['Description']
+            contact = profile_form.cleaned_data['Contact_Number']
             user = authenticate(username=username, password=password)
             login(request, user)
             profile = org.objects.get(user=user)
             profile.We_Are = "org"
             profile.orgname = name
             profile.managed_by = mng
+            profile.Contact_Number = contact
             profile.Description = desc
             profile.save()
             return redirect('index')
@@ -97,7 +105,9 @@ def createuserpost(request):
             p.Exp = form.cleaned_data['Experience']
             p.created_by = request.user
             p.save()
-            return redirect('index')
+            messages.info(
+                request, "Your Post is now streaming, visit \"Posts by Job Seekers\" panel")
+            return render(request, "Seek/index.html")
 
     else:
         form = UserJobPost()
@@ -122,7 +132,9 @@ def createorgpost(request):
             p.Exp = form.cleaned_data['Minimum_required_experience']
             p.created_by = request.user
             p.save()
-            return redirect('index')
+            messages.info(
+                request, "Your Post is now streaming, visit \"Posts by recruiters\" panel")
+            return render(request, "Seek/index.html")
     else:
         form = OrgJobPost()
 
@@ -157,14 +169,16 @@ def confirmation(request):
 
 
 def card(request):
-    return render(request, "Seek/card.html")
+    return render(request, "Seek/contact-org.html")
 
 
 def profile_user(request):
     desc = None
     desc = User.objects.get(username=request.user)
     des = UserProfile.objects.get(user=request.user)
-    desc = {'desc': desc, 'des': des}
+    addr = des.Residence
+    addr = "https://www.google.com/maps/place/" + addr
+    desc = {'desc': desc, 'des': des, 'addr': addr}
     return render(request, "Seek/user_card.html", desc if desc else None)
 
 
@@ -204,8 +218,12 @@ def UserUpdatation(request):
         if form.is_valid() and profile_form.is_valid():
             form.save()
             description = profile_form.cleaned_data['Description']
+            contact = profile_form.cleaned_data['Contact_Number']
+            add = profile.cleaned_data['Residential_Address']
             profile = UserProfile.objects.get(user=request.user)
             profile.Description = description
+            profile.Contact = contact
+            profile.Residence = add
             profile.save()
             #profile_form.save()
             messages.success(request, 'Great, User updated successfully!')
@@ -214,7 +232,7 @@ def UserUpdatation(request):
         form = UserUpdate(instance=request.user)
         des = UserProfile.objects.get(user=request.user)
         profile_form = UserProfileform(
-            initial={'Description': des.Description})
+            initial={'Description': des.Description, 'Contact_Number': des.Contact, 'Residential_Address': des.Residence})
         args = {}
         args['form'] = form
         args['profile_form'] = profile_form
@@ -230,11 +248,13 @@ def OrgUpdatation(request):
         if form.is_valid() and profile_form.is_valid():
             form.save()
             description = profile_form.cleaned_data['Description']
-            orgname = profile_form.cleaned_data['orgname']
-            manager = profile_form.cleaned_data['managed_by']
+            orgname = profile_form.cleaned_data['Organisation']
+            manager = profile_form.cleaned_data['Manager']
+            contact = profile_form.cleaned_data['Contact_Number']
             profile = org.objects.get(user=request.user)
             profile.Description = description
             profile.orgname = orgname
+            profile.Contact_Number = contact
             profile.managed_by = manager
             profile.save()
             #profile_form.save()
@@ -244,7 +264,7 @@ def OrgUpdatation(request):
         form = OrgUpdate(instance=request.user)
         des = org.objects.get(user=request.user)
         profile_form = OrgProfileUpdate(
-            initial={'Description': des.Description, 'orgname': des.orgname, 'managed_by': des.managed_by})
+            initial={'Description': des.Description, 'Organisation': des.orgname, 'Manager': des.managed_by, 'Contact_Number': des.Contact_Number})
         args = {}
         args['form'] = form
         args['profile_form'] = profile_form
@@ -254,11 +274,19 @@ def OrgUpdatation(request):
 
 def post_by_users(request):
     post = userjobpost.objects.all()
+    if request.method == 'POST':
+        preference = request.POST.get('dosearch')
+        post = userjobpost.objects.filter(Q(Description__contains=preference) | Q(Expected_Salary__contains=preference) | Q(
+            Position_Name__contains=preference) | Q(Exp__contains=preference) | Q(age__contains=preference))
     con = {'post': post}
     return render(request, "Seek/posts_by_user.html", con)
 
 
 def post_by_orgs(request):
     post = orgjobpost.objects.all()
+    if request.method == 'POST':
+        preference = request.POST.get('dosearch')
+        post = orgjobpost.objects.filter(Q(Description__contains=preference) | Q(Salary__contains=preference) | Q(
+            Position_Name__contains=preference) | Q(Exp__contains=preference) | Q(age__contains=preference) | Q(No_of_openings__contains=preference))
     con = {'post': post}
     return render(request, "Seek/posts_by_org.html", con)
