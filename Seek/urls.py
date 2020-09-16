@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import (index, Userregister, Orgregister,
+from .views import (index, Userregister, Orgregister, UserProfileDetailView,OrgProfileDetailView,
                     confirmation, createorgpost, createuserpost, card, clientconsent, profile_org, profile_user, UserUpdatation, OrgUpdatation, post_by_users, post_by_orgs)
 
 
@@ -14,6 +14,8 @@ urlpatterns = [
     path('card/', card),
     path('consent/', clientconsent),
     path('user-profile/', profile_user, name="user-profile"),
+    path('org-profile/<int:pk>/', OrgProfileDetailView.as_view(), name="oprofile"),
+    path('user-profile/<int:pk>/', UserProfileDetailView.as_view(), name="uprofile"),
     path('org-profile/', profile_org, name="org-profile"),
     path('user-update/', UserUpdatation),
     path('org-update/', OrgUpdatation),

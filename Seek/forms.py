@@ -63,7 +63,8 @@ class OrgProfileform(forms.Form):
         max_length=300, help_text="Describe the people you want to hire.")
     Contact_Number = forms.CharField(
         max_length=12, help_text="Inform us your mobile number with country code.")
-
+    Site_Address = forms.CharField(
+        max_length=100, help_text="Inform here about where will be the person posted for the Job. (Address of Job posting, with proper descriptive details)")
     class Meta:
         fields = [
             'Organisation',
@@ -94,8 +95,6 @@ class OrgJobPost(forms.Form):
     )
     Salary = forms.IntegerField(min_value=0)
     Number_Of_Openings = forms.IntegerField()
-    Job_Site_Address = forms.CharField(
-        max_length=100, help_text="Inform here about where will be the person posted for this Job. (Address of Job posting, with proper descriptive details)")
     Agree = forms.BooleanField(
         help_text="Checking in this, you confirm that you commit to hire a candidate of age 18 or above and have no obligations to our terms & conditions and privacy policy.")
 
@@ -183,3 +182,5 @@ class OrgProfileUpdate(forms.Form):
         max_length=300, help_text="Describe the people you want to hire.")
     Contact_Number = forms.CharField(
         max_length=12, help_text="Inform us your mobile number with country code.")
+    Site_Address = forms.CharField(
+        max_length=100, help_text="Inform here about where will be the person posted for the Job. (Address of Job posting, with proper descriptive details)")

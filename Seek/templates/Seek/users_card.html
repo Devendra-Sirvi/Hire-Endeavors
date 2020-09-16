@@ -38,14 +38,14 @@
           <div class="title">Passionate Job seeker</div>
           <h2
             style="background-image: linear-gradient(-60deg, #1656a0a2 0%, #3ff4f4b0 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 40px;">
-            {{object.user.first_name}} {{object.user.last_name}}</h2>
+            {{user.first_name}} {{user.last_name}}</h2>
 
-          <div class="desc" style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 18px;">{{des.Description}} {{object.Description}}</div>
+          <div class="desc" style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 18px;">{{des.Description}}</div>
           <div class="actions col-sm-6 mx-auto">
             <!-- <button><i class="far fa-heart"></i></button> -->
-            <button><a href="mailto:{{object.user.email | safe}}"><i class="far fa-envelope"
+            <button><a href="mailto:{{user.email | safe}}"><i class="far fa-envelope"
                   style="font-size: 30px;"></i></a></button>
-            <button><a href="{{object.Residence}}"><i class="fa fa-map-marker" style="font-size: 30px;"></i></a></button>
+            <button><a href="{{addr}}"><i class="fa fa-map-marker" style="font-size: 30px;"></i></a></button>
             <!-- <button><i class="fas fa-user-friends"></i></button> -->
           </div>
         </div>
@@ -53,7 +53,9 @@
       </div>
 
 
-     
+      <div class="edit_profile m-2" style="display: block;">
+        <a href="/user-update/"><button type="submit" class="btn btn-primary">Update Profile</button></a>
+      </div>
     </div>
   </div>
 </div>

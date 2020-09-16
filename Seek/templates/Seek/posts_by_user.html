@@ -94,7 +94,7 @@
                 <h5 class="card-title filters" style="font-family: 'Fredoka One';">Post By :
                     {{ single_post.created_by }}</h5>
                 <p class="card-text filters">{{single_post.Description}}</p>
-                <a href="#" class="btn btn-primary filters">Contact Me</a>
+                <a href="{% url 'uprofile' pk=single_post.created_by.id %}" class="btn btn-primary filters">Contact Me</a>
             </div>
             <div class="card-footer text-muted">
                 2 days ago

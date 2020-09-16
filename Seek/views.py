@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from .models import org, UserProfile
 from jobs.models import userjobpost, orgjobpost
 from django.db.models import Q
-
+from django.views.generic.detail import DetailView
 # Create your views here.
 
 
@@ -39,9 +39,6 @@ def Userregister(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
-            prof = UserProfile()
-            prof.user = user
-            prof.save()
             p = UserProfile.objects.get(user=user)
             p.Contact = contact
             p.Residence = add
@@ -70,6 +67,7 @@ def Orgregister(request):
             password = form.cleaned_data['password1']
             name = profile_form.cleaned_data['Organisation']
             mng = profile_form.cleaned_data['Manager']
+            add = profile_form.cleaned_data['Site_Address']
             desc = profile_form.cleaned_data['Description']
             contact = profile_form.cleaned_data['Contact_Number']
             user = authenticate(username=username, password=password)
@@ -78,6 +76,7 @@ def Orgregister(request):
             profile.We_Are = "org"
             profile.orgname = name
             profile.managed_by = mng
+            profile.Address = add
             profile.Contact_Number = contact
             profile.Description = desc
             profile.save()
@@ -179,14 +178,17 @@ def profile_user(request):
     addr = des.Residence
     addr = "https://www.google.com/maps/place/" + addr
     desc = {'desc': desc, 'des': des, 'addr': addr}
-    return render(request, "Seek/user_card.html", desc if desc else None)
+    return render(request, "Seek/users_card.html", desc if desc else None)
 
 
 def profile_org(request):
     desc = None
     desc = org.objects.get(user=request.user)
-    desc = {'desc': desc}
-    return render(request, "Seek/org_card.html", desc if desc else None)
+    addr = desc.Address
+    print(addr)
+    addr = "https://www.google.com/maps/place/" + addr
+    desc = {'desc': desc, 'des':addr}
+    return render(request, "Seek/orgs_card.html", desc if desc else None)
 
 
 def clientconsent(request):
@@ -219,15 +221,16 @@ def UserUpdatation(request):
             form.save()
             description = profile_form.cleaned_data['Description']
             contact = profile_form.cleaned_data['Contact_Number']
-            add = profile.cleaned_data['Residential_Address']
+            add = profile_form.cleaned_data['Residential_Address']
             profile = UserProfile.objects.get(user=request.user)
             profile.Description = description
             profile.Contact = contact
             profile.Residence = add
+            context = {'des':profile, 'addr':add}
             profile.save()
             #profile_form.save()
             messages.success(request, 'Great, User updated successfully!')
-            return render(request, 'Seek/user_card.html', {'des': profile})
+            return render(request, 'Seek/users_card.html', context)
     else:
         form = UserUpdate(instance=request.user)
         des = UserProfile.objects.get(user=request.user)
@@ -251,20 +254,23 @@ def OrgUpdatation(request):
             orgname = profile_form.cleaned_data['Organisation']
             manager = profile_form.cleaned_data['Manager']
             contact = profile_form.cleaned_data['Contact_Number']
+            add = profile_form.cleaned_data['Site_Address']
             profile = org.objects.get(user=request.user)
             profile.Description = description
             profile.orgname = orgname
             profile.Contact_Number = contact
+            profile.Address = add
             profile.managed_by = manager
             profile.save()
+            addr = "https://www.google.com/maps/place/" + add
             #profile_form.save()
             messages.success(request, 'Great, User updated successfully!')
-            return render(request, 'Seek/org_card.html', {'desc': profile})
+            return render(request, 'Seek/orgs_card.html', {'desc': profile, 'des':addr})
     else:
         form = OrgUpdate(instance=request.user)
         des = org.objects.get(user=request.user)
         profile_form = OrgProfileUpdate(
-            initial={'Description': des.Description, 'Organisation': des.orgname, 'Manager': des.managed_by, 'Contact_Number': des.Contact_Number})
+            initial={'Description': des.Description, 'Organisation': des.orgname, 'Manager': des.managed_by, 'Contact_Number': des.Contact_Number, 'Site_Address':des.Address})
         args = {}
         args['form'] = form
         args['profile_form'] = profile_form
@@ -290,3 +296,13 @@ def post_by_orgs(request):
             Position_Name__contains=preference) | Q(Exp__contains=preference) | Q(age__contains=preference) | Q(No_of_openings__contains=preference))
     con = {'post': post}
     return render(request, "Seek/posts_by_org.html", con)
+
+class UserProfileDetailView(DetailView):
+    model = UserProfile
+    template_name = "Seek/user_card.html"
+
+class OrgProfileDetailView(DetailView):
+    model = org
+    template_name = "Seek/org_card.html"
+
+    

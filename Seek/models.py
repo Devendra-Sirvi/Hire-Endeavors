@@ -16,7 +16,7 @@ class org(models.Model):
     managed_by = models.CharField(max_length=50, null=True)
     Description = models.TextField(null=True)
     Contact_Number = models.CharField(max_length=12, default="111111111111")
-
+    Address = models.CharField(max_length=100,default="India")
     def __str__(self):
         return self.orgname if self.orgname else ''
 
@@ -24,7 +24,7 @@ class org(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE,
-        null=True, blank=True, unique=True
+        null=True, blank=True
     )
     Description = models.TextField(null=True)
     Residence = models.CharField(max_length=60, default="India")
@@ -36,3 +36,4 @@ def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         org.objects.create(user=instance)
         instance.profile.save()
+        UserProfile.objects.create(user=instance)
