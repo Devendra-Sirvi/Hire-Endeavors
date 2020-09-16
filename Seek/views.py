@@ -310,8 +310,14 @@ class UserProfileDetailView(DetailView):
 class OrgProfileDetailView(DetailView):
     model = org
     template_name = "Seek/contact-org.html"
-    
-    
+
+# def handler404(request,exception, template_name="Seek404.html"):
+#     return render(request, 'Seek/404.html', status=404)
+
+# def handler500(request,*args, **argv):
+#     return render(request, 'Seek/500.html', status=500)
+from django.views.defaults import page_not_found
+
 def handler_404(request, exception, template_name="Seek/404.html"):
     return render(request, exception, template_name)
 
