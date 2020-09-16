@@ -16,7 +16,8 @@ class org(models.Model):
     managed_by = models.CharField(max_length=50, null=True)
     Description = models.TextField(null=True)
     Contact_Number = models.CharField(max_length=12, default="111111111111")
-    Address = models.CharField(max_length=100,default="India")
+    Address = models.CharField(max_length=100, default="India")
+
     def __str__(self):
         return self.orgname if self.orgname else ''
 

@@ -25,13 +25,17 @@
           style="background-image: linear-gradient(-60deg, #1656a0a2 0%, #3ff4f4b0 100%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 40px;">
           {{desc.orgname}}</h2>
 
-        <div class="desc" style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 18px;">{{desc.Description}} </div>
-        <div class="desc" style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 15px;">Managed By : {{desc.managed_by}} </div>
+        <div class="desc"
+          style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 18px;">
+          {{desc.Description}} </div>
+        <div class="desc"
+          style="background-image:linear-gradient(315deg, #36669d 0%, #d3d3d3 74%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;-moz-background-clip: text;-moz-text-fill-color: transparent; font-family: 'Fredoka One';font-size: 15px;">
+          Managed By : {{desc.managed_by}} </div>
         <div class="actions col-sm-6 mx-auto">
           <!-- <button><i class="far fa-heart"></i></button> -->
           <button><a href="mailto:{{user.email | safe}}"><i class="far fa-envelope"
                 style="font-size: 30px;"></i></a></button>
-                <button><a href="{{des}}"><i class="fa fa-map-marker" style="font-size: 30px;"></i></a></button>
+          <button><a href="{{des}}"><i class="fa fa-map-marker" style="font-size: 30px;"></i></a></button>
           <!-- <button><i class="fas fa-user-friends"></i></button> -->
         </div>
       </div>

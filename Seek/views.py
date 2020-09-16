@@ -187,7 +187,7 @@ def profile_org(request):
     addr = desc.Address
     print(addr)
     addr = "https://www.google.com/maps/place/" + addr
-    desc = {'desc': desc, 'des':addr}
+    desc = {'desc': desc, 'des': addr}
     return render(request, "Seek/orgs_card.html", desc if desc else None)
 
 
@@ -226,7 +226,7 @@ def UserUpdatation(request):
             profile.Description = description
             profile.Contact = contact
             profile.Residence = add
-            context = {'des':profile, 'addr':add}
+            context = {'des': profile, 'addr': add}
             profile.save()
             #profile_form.save()
             messages.success(request, 'Great, User updated successfully!')
@@ -265,12 +265,12 @@ def OrgUpdatation(request):
             addr = "https://www.google.com/maps/place/" + add
             #profile_form.save()
             messages.success(request, 'Great, User updated successfully!')
-            return render(request, 'Seek/orgs_card.html', {'desc': profile, 'des':addr})
+            return render(request, 'Seek/orgs_card.html', {'desc': profile, 'des': addr})
     else:
         form = OrgUpdate(instance=request.user)
         des = org.objects.get(user=request.user)
         profile_form = OrgProfileUpdate(
-            initial={'Description': des.Description, 'Organisation': des.orgname, 'Manager': des.managed_by, 'Contact_Number': des.Contact_Number, 'Site_Address':des.Address})
+            initial={'Description': des.Description, 'Organisation': des.orgname, 'Manager': des.managed_by, 'Contact_Number': des.Contact_Number, 'Site_Address': des.Address})
         args = {}
         args['form'] = form
         args['profile_form'] = profile_form
@@ -297,12 +297,16 @@ def post_by_orgs(request):
     con = {'post': post}
     return render(request, "Seek/posts_by_org.html", con)
 
+
 class UserProfileDetailView(DetailView):
     model = UserProfile
     template_name = "Seek/user_card.html"
 
+# class OrgProfileDetailView(DetailView):
+#     model = org
+#     template_name = "Seek/org_card.html"
+
+
 class OrgProfileDetailView(DetailView):
     model = org
-    template_name = "Seek/org_card.html"
-
-    
+    template_name = "Seek/contact-org.html"

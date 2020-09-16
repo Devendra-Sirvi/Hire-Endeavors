@@ -65,6 +65,7 @@ class OrgProfileform(forms.Form):
         max_length=12, help_text="Inform us your mobile number with country code.")
     Site_Address = forms.CharField(
         max_length=100, help_text="Inform here about where will be the person posted for the Job. (Address of Job posting, with proper descriptive details)")
+
     class Meta:
         fields = [
             'Organisation',

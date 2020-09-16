@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import (index, Userregister, Orgregister, UserProfileDetailView,OrgProfileDetailView,
+from .views import (index, Userregister, Orgregister, UserProfileDetailView, OrgProfileDetailView,
                     confirmation, createorgpost, createuserpost, card, clientconsent, profile_org, profile_user, UserUpdatation, OrgUpdatation, post_by_users, post_by_orgs)
 
 
