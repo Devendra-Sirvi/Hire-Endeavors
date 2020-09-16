@@ -310,3 +310,10 @@ class UserProfileDetailView(DetailView):
 class OrgProfileDetailView(DetailView):
     model = org
     template_name = "Seek/contact-org.html"
+    
+    
+def handler_404(request, exception, template_name="Seek/404.html"):
+    return render(request, exception, template_name)
+
+def handler_500(request, *args, **argv):
+    return render(request, "Seek/500.html")
