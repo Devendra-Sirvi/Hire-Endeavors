@@ -11,6 +11,8 @@ from django.db.models import Q
 from django.views.generic.detail import DetailView
 # Create your views here.
 
+def getstart(request):
+    return render(request, "Seek/get-started.html")
 
 def index(request):
     data = None
