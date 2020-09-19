@@ -24,7 +24,11 @@ urlpatterns = [
     path('org-update/', OrgUpdatation),
     path('byusers/', post_by_users),
     path('byorgs/', post_by_orgs),
-    
+    ##########################################
+    path('password-reset/', PasswordResetView.as_view()),
+    path('password-reset-done/', PasswordResetDone.as_view()),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirm.as_view(), name="reset"),
+    path('password-reset-complete/', PasswordResetComplete.as_view(), name="password-reset-complete")
 ]
 
 

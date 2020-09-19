@@ -328,3 +328,18 @@ def handler_404(request, exception, template_name="Seek/404.html"):
 
 def handler_500(request, *args, **argv):
     return render(request, "Seek/500.html")
+    
+class PasswordResetView(auth_views.PasswordResetView):
+    template_name = 'passres/form.html'
+    html_email_template_name = 'passres/email.html'
+    success_url = '/password-reset-done/'
+
+class PasswordResetDone(auth_views.PasswordResetDoneView):
+    template_name = 'passres/done.html'
+
+class PasswordResetConfirm(auth_views.PasswordResetConfirmView):
+    template_name = 'passres/confirm.html'
+    success_url = '/password-reset-complete/'
+
+class PasswordResetComplete(auth_views.PasswordResetCompleteView):
+    template_name = 'passres/complete.html'

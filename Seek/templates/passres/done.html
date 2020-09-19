@@ -1,0 +1,16 @@
+{% extends "Seek/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Forgot password? {% endblock %} {% block body %}
+<div class="jumbotron jumbotron-fullheight jumbo-vertical-center bg-dark mb-0 radius-0">
+    <div class="container">
+        <div class="login-form">
+           
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="display-4 text-center">Password Reset follow-up</h2>
+                <p class="text-justify">We've emailed you instructions for setting your password to your registered Email account. Kindly check your inbox, If you don't receive an email, please make sure you've entered the address you registered with & check your spam folder. Kindly follow the instructions as directed in your mail, if any issue/problem persists contact our attached mail address. After doing password reset, please try to login again.</p>
+            </form>
+        </div>
+
+        {% endblock %}
