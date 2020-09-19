@@ -10,6 +10,7 @@ from .models import org, UserProfile
 from jobs.models import userjobpost, orgjobpost
 from django.db.models import Q
 from django.views.generic.detail import DetailView
+from django.contrib.auth import views as auth_views
 # Create your views here.
 
 def getstart(request):

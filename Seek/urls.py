@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf.urls import handler400
 from Seek import views as myapp_views
 from .views import (getstart, index, Userregister, Orgregister, UserProfileDetailView, OrgProfileDetailView,
-                    confirmation, createorgpost, createuserpost, card, clientconsent, profile_org, profile_user, UserUpdatation, OrgUpdatation, post_by_users, post_by_orgs)
+                    confirmation, createorgpost, createuserpost, card, clientconsent, profile_org, profile_user, UserUpdatation, OrgUpdatation, post_by_users, post_by_orgs, PasswordResetView, PasswordResetDone, PasswordResetConfirm, PasswordResetComplete)
 
 
 urlpatterns = [
