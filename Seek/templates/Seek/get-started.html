@@ -1,52 +1,67 @@
-{% extends "Seek/base.html" %}{% block title%} Hire Endeavors {% endblock %}{% load static%}
+{% extends "Seek/base.html" %}{% block title%}Get-Started{% endblock %}{% load static%}
 
-
+{% block fav%} {% static 'icons/shuttle.svg' %}{% endblock %}
 
 
 {% block body %}
 <div class="lead bg-dark">
-    <div class="container">
-        <div class="col-sm-12">
-            <img src="{% static 'images/welcome.svg' %}" height="300" width="300" class="card-img-top" alt="...">
+	<div class="container">
+		<div class="col-sm-12">
+			<img src="{% static 'images/welcome.svg' %}" height="300" width="300" class="card-img-top" alt="...">
 		</div><br>
 		<div class="mb-2 text-center col-sm-12">
-			<h5 class="text-light text-center text-uppercase" style="font-family: 'Fredoka One';font-size: 40px;">Welcome to a virtual employment desk! </h5>
-			<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Organizations can show off their company culture and welcome new hires with a personalized experience. A central location for employers & employee!</b>
+			<h5 class="text-light text-center text-uppercase" style="font-family: 'Fredoka One';font-size: 40px;">
+				Welcome to a virtual employment desk! </h5>
+			<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Organizations
+					can show off their company culture and welcome new hires with a personalized experience. A central
+					location for employers & employee!</b>
 			</p>
 			<div class="col-sm-12" style="margin-top: 120px;">
 				<img src="{% static 'images/sec.svg' %}" height="200" width="200" class="card-img-top" alt="...">
 
-				<h5 class="mt-4 text-light text-center text-uppercase" style="font-family: 'Fredoka One';font-size: 30px;">Feel Secure! </h5>
+				<h5 class="mt-4 text-light text-center text-uppercase"
+					style="font-family: 'Fredoka One';font-size: 30px;">Feel Secure! </h5>
 
-				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>World class Django powered security, Our authentication system handles both authentication and authorization. Briefly, authentication verifies a user is who they claim to be, and authorization determines what an authenticated user is allowed to do. Our general Mantra <I>Your security, our priority.</I></b>
+				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>World
+						class Django powered security, Our authentication system handles both authentication and
+						authorization. Briefly, authentication verifies a user is who they claim to be, and
+						authorization determines what an authenticated user is allowed to do. Our general Mantra <I>Your
+							security, our priority.</I></b>
 				</p>
 			</div><br>
 			<div class="col-sm-12" style="margin-top: 120px;">
 				<img src="{% static 'images/create.svg' %}" height="250" width="250" class="card-img-top" alt="...">
 
-				<h5 class="mt-4 text-light text-center text-uppercase" style="font-family: 'Fredoka One';font-size: 30px;">Create Posts!</h5>
+				<h5 class="mt-4 text-light text-center text-uppercase"
+					style="font-family: 'Fredoka One';font-size: 30px;">Create Posts!</h5>
 
-				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Post for the profession you want to be in or hire on! Your post will be wrapped in our cyber bottle and will be streamed at their respective panels.</b>
+				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Post for
+						the profession you want to be in or hire on! Your post will be wrapped in our cyber bottle and
+						will be streamed at their respective panels.</b>
 				</p>
 			</div><br>
 			<div class="col-sm-12" style="margin-top: 120px;">
 				<img src="{% static 'images/shake.svg' %}" height="250" width="250" class="card-img-top" alt="...">
 
-				<h5 class="mt-4 text-light text-center text-uppercase" style="font-family: 'Fredoka One';font-size: 30px;">Build Up a Community!</h5>
+				<h5 class="mt-4 text-light text-center text-uppercase"
+					style="font-family: 'Fredoka One';font-size: 30px;">Build Up a Community!</h5>
 
-				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Be in touch with the people who are from your profession, may be they can help you lend some job they've once rejected to be in. Interact & work, will help you and us to ease the hire process.</b>
+				<p class="text-light text-center" style="font-family: Lucida Console, Courier, monospace;"><b>Be in
+						touch with the people who are from your profession, may be they can help you lend some job
+						they've once rejected to be in. Interact & work, will help you and us to ease the hire
+						process.</b>
 				</p>
 			</div><br>
 			<div class="mt-4">
 				<a href="/" class="btn btn-danger btn-lg m-2 btn-wide">
-				  <span style="font-size: 22px;">Go Home, join us now!</span>
+					<span style="font-size: 22px;">Go Home, join us now!</span>
 				</a>
-			  </div>
-        </div><br>
-        
-        
-       
-    </div>
+			</div>
+		</div><br>
+
+
+
+	</div>
 </div>
 
 
