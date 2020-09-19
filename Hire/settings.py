@@ -139,6 +139,7 @@ LOGOUT_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'hireendeavors2020@gmail.com'
+DEFAULT_FROM_EMAIL = 'no-reply@hireendeavors.com'
 EMAIL_HOST_PASSWORD = 'uyzlqkxiyawtbcoq'
 EMAIL_PORT = '587'
 EMAIL_USE_TLS = True 
