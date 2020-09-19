@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.models import User
 from .forms import (RegistrationForm, UserProfileform, UpdateUserProfileform, UserUpdate, OrgRegistrationForm,
                     OrgProfileform, OrgUpdate, OrgProfileUpdate, UserJobPost, OrgJobPost, confirm, consent)
@@ -105,6 +106,7 @@ def createuserpost(request):
             p.age = form.cleaned_data['Age']
             p.Exp = form.cleaned_data['Experience']
             p.created_by = request.user
+            p.Date = timezone.now()
             p.save()
             messages.info(
                 request, "Your Post is now streaming, visit \"Posts by Job Seekers\" panel")
@@ -132,6 +134,7 @@ def createorgpost(request):
             p.No_of_openings = form.cleaned_data['Number_Of_Openings']
             p.Exp = form.cleaned_data['Minimum_required_experience']
             p.created_by = request.user
+            p.Date = timezone.now()
             p.save()
             messages.info(
                 request, "Your Post is now streaming, visit \"Posts by recruiters\" panel")
