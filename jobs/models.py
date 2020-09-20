@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime 
 # Create your models here.
 
 
@@ -13,6 +14,7 @@ class userjobpost(models.Model):
         User, on_delete=models.CASCADE, related_name='userpost',
         null=True, blank=True, unique=False
     )
+    Date = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
         return self.Position_Name
@@ -30,6 +32,7 @@ class orgjobpost(models.Model):
         User, on_delete=models.CASCADE, related_name='orgpost',
         null=True, blank=True, unique=False
     )
+    Date = models.DateTimeField(default=datetime.datetime.now)
 
     def __str__(self):
         return self.Position_Name

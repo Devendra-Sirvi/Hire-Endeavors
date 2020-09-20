@@ -1,6 +1,8 @@
 {% extends "Seek/base.html" %}{% load static%}
-
+{% block title%}Contact-Me{% endblock %}
+{% block fav%} {% static 'icons/user.svg' %}{% endblock %}
 {% block body %}
+
 <div class="sabak jumbotron jumbotron-fullheight jumbo-vertical-center text-light text-center bg-dark mb-0 radius-0 ">
   <div class="text-center col-sm-12" style="display: block;">
     {% if messages %}
@@ -47,7 +49,7 @@
             <!-- <button><i class="far fa-heart"></i></button> -->
             <button><a href="mailto:{{object.user.email | safe}}"><i class="far fa-envelope"
                   style="font-size: 30px;"></i></a></button>
-            <button><a href="{{object.Residence}}"><i class="fa fa-map-marker"
+            <button><a href="https://google.com/maps/place/{{object.Residence}}"><i class="fa fa-map-marker"
                   style="font-size: 30px;"></i></a></button>
             <!-- <button><i class="fas fa-user-friends"></i></button> -->
           </div>

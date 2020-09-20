@@ -1,0 +1,34 @@
+{% extends "Seek/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} Forgot password? {% endblock %} {% block body %}
+<div class="jumbotron jumbotron-fullheight jumbo-vertical-center bg-dark mb-0 radius-0">
+    <div class="container">
+        <div class="login-form">
+          {% if validlink %}
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="display-4 text-center">Change Password</h2>
+                {{form | crispy}}
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block" value="login">Change Password</button>
+                </div>
+                </form>
+                {% else %}
+                <div class="container">
+                  <div class="login-form">
+                     
+                      <form method="post">
+                          {% csrf_token %}
+                          <h2 class="display-4 text-center">Stuff went wrong!</h2>
+                          <p class="text-justify">The password reset link was invalid, possibly because it has already been used.
+                            Please request a new password reset.</p>
+                      </form>
+                  </div>
+                    
+          {% endif %}
+            
+            
+        </div>
+
+        {% endblock %}

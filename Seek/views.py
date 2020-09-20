@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.utils import timezone
 from django.contrib.auth.models import User
 from .forms import (RegistrationForm, UserProfileform, UpdateUserProfileform, UserUpdate, OrgRegistrationForm,
                     OrgProfileform, OrgUpdate, OrgProfileUpdate, UserJobPost, OrgJobPost, confirm, consent)
@@ -9,8 +10,11 @@ from .models import org, UserProfile
 from jobs.models import userjobpost, orgjobpost
 from django.db.models import Q
 from django.views.generic.detail import DetailView
+from django.contrib.auth import views as auth_views
 # Create your views here.
 
+def getstart(request):
+    return render(request, "Seek/get-started.html")
 
 def index(request):
     data = None
@@ -103,6 +107,7 @@ def createuserpost(request):
             p.age = form.cleaned_data['Age']
             p.Exp = form.cleaned_data['Experience']
             p.created_by = request.user
+            p.Date = timezone.now()
             p.save()
             messages.info(
                 request, "Your Post is now streaming, visit \"Posts by Job Seekers\" panel")
@@ -130,6 +135,7 @@ def createorgpost(request):
             p.No_of_openings = form.cleaned_data['Number_Of_Openings']
             p.Exp = form.cleaned_data['Minimum_required_experience']
             p.created_by = request.user
+            p.Date = timezone.now()
             p.save()
             messages.info(
                 request, "Your Post is now streaming, visit \"Posts by recruiters\" panel")
@@ -310,3 +316,31 @@ class UserProfileDetailView(DetailView):
 class OrgProfileDetailView(DetailView):
     model = org
     template_name = "Seek/contact-org.html"
+
+# def handler404(request,exception, template_name="Seek404.html"):
+#     return render(request, 'Seek/404.html', status=404)
+
+# def handler500(request,*args, **argv):
+#     return render(request, 'Seek/500.html', status=500)
+from django.views.defaults import page_not_found
+
+def handler_404(request, exception, template_name="Seek/404.html"):
+    return render(request, exception, template_name)
+
+def handler_500(request, *args, **argv):
+    return render(request, "Seek/500.html")
+    
+class PasswordResetView(auth_views.PasswordResetView):
+    template_name = 'passres/form.html'
+    html_email_template_name = 'passres/email.html'
+    success_url = '/password-reset-done/'
+
+class PasswordResetDone(auth_views.PasswordResetDoneView):
+    template_name = 'passres/done.html'
+
+class PasswordResetConfirm(auth_views.PasswordResetConfirmView):
+    template_name = 'passres/confirm.html'
+    success_url = '/password-reset-complete/'
+
+class PasswordResetComplete(auth_views.PasswordResetCompleteView):
+    template_name = 'passres/complete.html'
